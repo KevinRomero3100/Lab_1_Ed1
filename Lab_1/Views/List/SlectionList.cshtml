@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "SlectionList";
+}
+
+<h2>Seleccionar ingreso de datos y tipo lista</h2>
+
+<br />
+<form method="post" enctype="multipart/form-data">
+    @Html.RadioButton("TypeList", "ListaArtesanal") Lista Artesanal <br /><br />
+    @Html.RadioButton("TypeList", "ListaC#")  Lista C#
+    <br /><br />
+    @Html.RadioButton("TypeDate", "CargarArcivo") Cargar Arcivo <br /><br />
+    @Html.RadioButton("TypeDate", "IngresarManual")  Ingresar manual
+    <br /><br />
+
+    @*  *@
+
+    <button>Seleccionar</button>
+</form>
+

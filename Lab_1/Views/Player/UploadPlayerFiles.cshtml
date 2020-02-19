@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "UploadPlayerFiles";
+}
+
+    <h2>Subir datos de jugadores</h2>
+
+
+<h2 class="text-danger" > @ViewBag.Error </h2>
+<h2 class="text-success"> @ViewBag.Confirmation</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <input type="file" name="file">
+    <hr />
+    <button type="submit">Subir</button>
+
+</form>

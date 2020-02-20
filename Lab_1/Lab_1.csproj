@@ -174,6 +174,8 @@
     <Content Include="Views\Home\UpFile.cshtml" />
     <Content Include="Views\Player\UploadPlayerFiles.cshtml" />
     <Content Include="Views\List\SlectionList.cshtml" />
+    <Content Include="Views\Player\UploadDatesPlayersManually.cshtml" />
+    <Content Include="Views\Player\PlayersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

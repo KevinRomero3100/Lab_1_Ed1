@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Lab_1.Models;
 using System.IO;
 using Genericos.Structures;
+using Lab_1.Helpers;
 
 
 namespace Lab_1.Controllers
@@ -35,10 +36,79 @@ namespace Lab_1.Controllers
 
                 readFile.ReadFiles(route);    
             }
-            return View();
+            return RedirectToAction("PlayersList");
+        }
+
+        public ActionResult PlayersList()
+        {
+            if (Storage.Instance.typeList == "ListaArtesanal")
+            {
+                return View(Storage.Instance.playersListProp);
+            }
+            else if (Storage.Instance.typeList == "ListaC#")
+            {
+                    return View(Storage.Instance.playersListCshap);
+                
+            }
+            else
+            {
+                return RedirectToAction("UploadPlayerFiles");
+            }
+            
+        }
+
+        public ActionResult Edit(int Id,string Club, string firstName, string lastName, string Position, 
+            float baseSalary, float guarnteed  )
+        {
+            if (Storage.Instance.typeList == "ListaArtesanal")
+            {
+                var playerModyfy = new Player {id = Id,club =Club,fisrt_name = firstName, last_name= lastName,
+                position =Position, base_salary =baseSalary, guaranteed_compensation = guarnteed};
+
+
+
+                return RedirectToAction("PlayersList");
+            }
+            else if (Storage.Instance.typeList == "ListaC#")
+            {
+
+                
+                return RedirectToAction("PlayersList");
+
+
+            }
+            else
+            {
+                return RedirectToAction("PlayersList");
+            }
         }
 
 
-       
+        public ActionResult Delete(int Id)//int Id, string Club, string firstName, string lastName, string Position,
+        //    float baseSalary, float guarnteed)
+        {
+            var deletePlayer = new Player
+            {
+                id = Id
+            };
+            //    club = Club,
+            //    fisrt_name = firstName,
+            //    last_name = lastName,
+            //    position = Position,
+            //    base_salary = baseSalary,
+            //    guaranteed_compensation = guarnteed
+            //};
+            if (Storage.Instance.typeList == "ListaArtesanal")
+            {
+                Storage.Instance.playersListProp.Del(deletePlayer);
+            }
+            else if (Storage.Instance.typeList == "ListaC#")
+            {
+                Storage.Instance.playersListCshap.Remove(deletePlayer);
+
+            }
+            return RedirectToAction("PlayersList");
+        }
+
     }
 }

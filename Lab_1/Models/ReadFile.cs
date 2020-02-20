@@ -12,7 +12,7 @@ namespace Lab_1.Models
     { 
         public void ReadFiles(string route)
         {
-            Player player = new Player();
+            
             int i = 0;
            string[] lines = File.ReadAllLines(route);
             foreach (var line in lines)
@@ -21,23 +21,18 @@ namespace Lab_1.Models
                 if (i!=0)
                 {
                     Storage.Instance.ID += 1;
-                    player.club = values[0];
-                    player.last_name = values[1];
-                    player.fisrt_name = values[2];
-                    player.position = values[3];
-                    player.base_salary = float.Parse(values[4]);
-                    player.guaranteed_compensation = float.Parse(values[5]);
-                    player.id = Storage.Instance.ID;
-    
-                    if (Storage.Instance.typeList == "ListaArtesanal")
+                    var player = new Player 
                     {
-                        Storage.Instance.playersListProp.Add(player);
-                    }
-                    else if (Storage.Instance.typeList == "ListaC#")
-                    {
-                        Storage.Instance.playersListCshap.Add(player);
-                    }
-                    
+                        club = values[0],
+                        last_name = values[1],
+                        fisrt_name = values[2],
+                        position = values[3],
+                        base_salary = float.Parse(values[4]),
+                        guaranteed_compensation = float.Parse(values[5]),
+                        id = Storage.Instance.ID
+                    };
+
+                    player.save();
                 }
                 i++;            
             }

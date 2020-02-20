@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Lab_1.Models.Player>
+@using Lab_1.Models;
+
+@{
+    ViewBag.Title = "PlayersList";
+}
+
+<h2>PlayersList</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.club)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fisrt_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.base_salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.guaranteed_compensation)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.RadioButton("PlayerDel", Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.club);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fisrt_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.base_salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.guaranteed_compensation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { item }) |
+                    @Html.ActionLink("Delete", "Delete", new 
+                    {
+                        id=item.id 
+                     })|
+                </td>
+            </tr>
+        }
+    </table>
+ }

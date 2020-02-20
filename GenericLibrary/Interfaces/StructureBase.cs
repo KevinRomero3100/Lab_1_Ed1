@@ -11,6 +11,6 @@ namespace Genericos.Interfeces
     {
         protected abstract void Insert(T value);
         protected abstract void Delete(T value);
-        protected abstract T Get(T value);
+
     }
 }

@@ -20,10 +20,7 @@ namespace Genericos.Structures
 		{
 			Delete(value);
 		}
-		public void Extract(T value)
-		{
-			Get(value);
-		}
+
 
         protected override void Insert(T value)
         {
@@ -54,7 +51,7 @@ namespace Genericos.Structures
 			Node<T> last = null;
 			search = Head;
 
-			if (!Head.Value.Equals(value))
+			if (Head.Value.Equals(value))
 			{
 				Head = Head.Next;
 			}
@@ -77,50 +74,24 @@ namespace Genericos.Structures
 			}
 		}
 
-		protected override T Get(T value)
-		{
-			Node<T> search;
-			search = Head;
-			if (Head == null)
-			{
-				return Head.Value;
-			}
-			else
-			{
-				if (value.Equals(Head.Value))
-				{
-					return Head.Value;
-				}
-				else
-				{
-					while (!search.Value.Equals(value) && search.Next == null)
-					{
-						search = search.Next;
+		
 
-					}
-					if (search.Next.Equals(value))
-					{
-						return search.Value;
-					}
-					else
-					{
-						value = default(T);
-						return value;
-					}
 
-				}
-			}
-			
-		}
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			throw new NotImplementedException();
+			Node<T> search;
+			search = Head;
+			while (search.Next != null)
+			{
+				yield return search.Value;
+				search = search.Next;
+			}
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return GetEnumerator();
 		}
 	}
 }

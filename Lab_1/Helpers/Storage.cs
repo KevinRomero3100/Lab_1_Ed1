@@ -26,5 +26,6 @@ namespace Lab_1.Helpers
 
         public List<Player> playersListCshap = new List<Player>();
         public ListProp<Player> playersListProp = new ListProp<Player>();
+        public List<Timer> time = new List<Timer>();
     }
 }

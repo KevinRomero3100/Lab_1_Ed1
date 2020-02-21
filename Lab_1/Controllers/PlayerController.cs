@@ -15,7 +15,59 @@ namespace Lab_1.Controllers
     public class PlayerController : Controller
     {
         String route = null;
+        Services s = new Services();
 
+        public ActionResult Index()
+        {
+
+            if (Storage.Instance.ListProp)
+            {
+                return view(Storage.Instance.playerListProp);
+            }
+            else
+            {
+                return view(Storage.Instance.playerLitstCshap);
+            }
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+
+            /*
+             <form method="post" enctype="multipart/form-data">
+    Nombre: <input type="text" name="Nombre" /><br />
+    Apellido: <input type="text" name="Apellido" /><br />
+    Club: <input type="text" name="´Club" /><br />
+    Posición: <input type="text" name="´Posición" /><br />
+    Salario: <input type="number" name="Salario" />
+    <button>Registrar</button>
+</form>
+             */
+
+
+
+        }
+
+        public ActionResult Create(string Lastname, strong Firstname, string Club, string Position, float Basesalary, float guaranteedCompensation, int Id)
+        {
+            try
+            {
+                Player player = new Player(Lastname, Firstname, Club, Position, Basesalary);
+
+                var Exito = s.savePlayers(jugador);
+                if (!Exito)
+                    ViewBag.Mensaje = "Jugador registrado exitosamente";
+                else
+                    ViewBag.Mensaje = "Jugador ya registrado anteriormente";
+                return View();
+            }
+            catch
+            {
+                viewBag.Mensaje = "Ha ocurrido un error";
+                return view();
+            }
+        }
 
         public ActionResult UploadPlayerFiles()
         {
@@ -109,6 +161,53 @@ namespace Lab_1.Controllers
             }
             return RedirectToAction("PlayersList");
         }
+        public ActionResult search_LastName(string LastName)
+        {
+            Player Player01 = new Player { last_name = LastName };
+            return SearchPlayer(Player.ComparateLastName, LastName);
+        }
+        public ActionResult search_FirstName(string FirstName)
+        {
+            Player Player01 = new Player { first_name = FirstName };
+            return SearchPlayer(Player.ComparateFirstName, FirstName);
+        }
+        public ActionResult search_position(string Position)
+        {
+            Player Player01 = new Player { position = Position };
+            return SearchPlayer(Player.ComparatePosition, Position);
+        }
+        public ActionResult search_BaseSalary(float Salary)
+        {
+            Player Player01 = new Player { base_salary = Salary };
+            return SearchPlayer(Player.ComparateSalary, Salary);
+        }
 
+        public ActionResult SearchPlayers(Comparison<Player> Gamer, Player Player01)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            if (Storage.Instance.playerListProp)
+            {
+                for (int i = 0; i < Storage.Instance.playerListProp.Count; i++)
+                {
+                    if (position.Invoke(parametro.Invoke(Storage.Instance.playerListProp.Get(i), j1)))
+                    {
+                        //resultado
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Storage.Instance.PlayerListCshap.Count; i++)
+                {
+                    if (position.Invoke(parametro.Invoke(Storage.Instance.PlayerListCshap[i], j1)))
+                    {
+                        //Resultado
+                    }
+                }
+            }
+            timer.Stop();
+            Storage.Instance.Add(new Tiempo { "Tiempo de búsqueda: " + timer.Elapsed });
+        }
     }
 }

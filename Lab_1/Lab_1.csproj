@@ -132,6 +132,8 @@
     <Compile Include="Helpers\Storage.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\ReadFile.cs" />
+    <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\Timer.cs" />
     <Compile Include="Models\UploadFilesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
